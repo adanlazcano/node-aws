@@ -1,24 +1,3 @@
-// const express = require('express');
-
-// const app = express();
-
-// app.set('port', process.env.PORT || 3000);
-
-// app.get('/', (req, res) => {
-
-//     res.send('welcome world');
-// })
-
-// app.listen(app.get('port'), _ => {
-//     try {
-//         console.log(`Server running on port ${app.get('port')}`);
-//     } catch (error) {
-//         console.log(error.message);
-//     }
-// });
-
-const http = require('http');
-
 const path = require("path");
 const dotenv = require("dotenv");
 // dotenv.config();
@@ -40,8 +19,8 @@ GanadoStatus();
 mongoose
     .connect(`${process.env.DBHATO}`, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
-
+        useUnifiedTopology: true,
+        useFindAndModify: false,
     })
     .then((x) => {
         console.log(`Conectado a base de datos: "${x.connections[0].name}"`);
@@ -54,7 +33,7 @@ const app_name = require("./package.json").name;
 const debug = require("debug")(
     `${app_name}:${path.basename(__filename).split(".")[0]}`
 );
-// console.log("debug", debug);
+console.log("debug", debug);
 const app = express();
 
 app.use(
@@ -102,37 +81,6 @@ app.use("/api/vacunas", vacunas);
 app.use("/api/auth", auth);
 app.use("/api/config", configuracion);
 
-app.use((req, res, next) => {
-    res.status(404).json({ msg: 'Not Found' });
-});
+// app.get('/*', (req, res) => res.sendFile(__dirname + '/public/index.html'));
 
-app.use((err, req, res, next) => {
-    console.error('ERROR', req.method, req.path, err);
-    if (!res.headersSent) {
-        res.status(500).send({ msg: 'Revisa tu consola' });
-    }
-});
-
-const server = http.createServer(app);
-
-//   server.on('error', (error) => {
-//     if (error.syscall !== 'listen') {
-//       throw error;
-//     }
-//     switch (error.code) {
-//       case 'EACCES':
-//         console.error(`Port ${procces.env.PORT} requiere privilegios`);
-//         process.exit(1);
-//         break;
-//       case 'EADDRINUSE':
-//         console.error(`Port ${procces.env.PORT} esta en uso`);
-//         process.exit(1);
-//         break;
-//       default:
-//         throw error;
-//     }
-//   });
-
-server.listen(process.env.PORT, () => {
-    console.log(`Listening on http://localhost:${process.env.PORT}`);
-});
+module.exports = app;
