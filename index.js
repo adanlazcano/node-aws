@@ -17,7 +17,7 @@
 //     }
 // });
 
-const http = require('http');
+// const http = require('http');
 
 const path = require("path");
 const dotenv = require("dotenv");
@@ -113,7 +113,7 @@ app.use((err, req, res, next) => {
     }
 });
 
-const server = http.createServer(app);
+// const server = http.createServer(app);
 
 //   server.on('error', (error) => {
 //     if (error.syscall !== 'listen') {
@@ -133,6 +133,6 @@ const server = http.createServer(app);
 //     }
 //   });
 
-server.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, () => {
     console.log(`Listening on http://localhost:${process.env.PORT}`);
 });
