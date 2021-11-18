@@ -33,9 +33,9 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 
-// const GanadoStatus = require("./cronjob");
+const GanadoStatus = require("./cronjob");
 
-// GanadoStatus();
+GanadoStatus();
 
 mongoose
     .connect(`${process.env.DBHATO}`, {
@@ -133,6 +133,6 @@ app.use((err, req, res, next) => {
 //     }
 //   });
 
-app.listen(process.env.PORT, () => {
-    console.log(`Listening on http://localhost:${process.env.PORT}`);
+app.listen(3000, () => {
+    console.log(`Listening on http://localhost:3000`);
 });
