@@ -21,7 +21,7 @@
 
         "cookie-parser": "^1.4.3",
 
-        "bcrypt": "^5.0.1"
+        "bcrypt": "^3.0.6"
 
 
     },
