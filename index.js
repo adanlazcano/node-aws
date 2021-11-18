@@ -33,7 +33,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 
-const GanadoStatus = require("./cronjob");
+// const GanadoStatus = require("./cronjob");
 
 GanadoStatus();
 
