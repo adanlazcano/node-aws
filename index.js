@@ -35,7 +35,7 @@ const passport = require("passport");
 
 // const GanadoStatus = require("./cronjob");
 
-GanadoStatus();
+// GanadoStatus();
 
 mongoose
     .connect(`${process.env.DBHATO}`, {
